@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users/{userId}")
+@RequestMapping("/api/users/{userId}")
 public class UserPostController {
     @Autowired
     private IPostService postService;
@@ -29,19 +29,19 @@ public class UserPostController {
     @PostMapping("/posts")
     public RedirectView add(@PathVariable int userId, @Valid @RequestBody Post post, BindingResult result) {
         if (result.hasErrors()) {
-            return new RedirectView("/posts/error");
+            return new RedirectView("/api/posts/error");
         }
         int id = postService.store(userId, post);
-        return new RedirectView( "/posts/" + id);
+        return new RedirectView( "/api/posts/" + id);
     }
 
     @PutMapping("/posts/{postId}")
     public RedirectView update(@PathVariable int userId, @Valid @RequestBody Post post, BindingResult result) {
         if (result.hasErrors()) {
-            return new RedirectView("/posts/error");
+            return new RedirectView("/api/posts/error");
         }
         int id = postService.store(userId, post);
-        return new RedirectView("/posts/" + id);
+        return new RedirectView("/api/posts/" + id);
     }
 
 
