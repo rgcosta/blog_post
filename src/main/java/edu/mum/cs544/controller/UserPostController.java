@@ -21,10 +21,10 @@ public class UserPostController {
         return postService.getAllByUserId(userId);
     }
 
-    @GetMapping("/posts/{postId}")
-    public Post get(@PathVariable int userId, @PathVariable int postId) {
-        return postService.get(userId, postId);
-    }
+//    @GetMapping("/posts/{postId}")
+//    public Post get(@PathVariable int userId, @PathVariable int postId) {
+//        return postService.get(userId, postId);
+//    }
 
     @PostMapping("/posts")
     public RedirectView add(@PathVariable int userId, @Valid @RequestBody Post post, BindingResult result) {
@@ -32,7 +32,7 @@ public class UserPostController {
             return new RedirectView("/posts/error");
         }
         int id = postService.store(userId, post);
-        return new RedirectView("/users/" + userId + "/posts/" + id);
+        return new RedirectView( "/posts/" + id);
     }
 
     @PutMapping("/posts/{postId}")
@@ -41,12 +41,9 @@ public class UserPostController {
             return new RedirectView("/posts/error");
         }
         int id = postService.store(userId, post);
-        return new RedirectView("/users/" + userId + "/posts/" + id);
+        return new RedirectView("/posts/" + id);
     }
 
-    @DeleteMapping("/posts/{postId}")
-    public void delete(@PathVariable int postId) {
-        postService.delete(postId);
-    }
+
 
 }

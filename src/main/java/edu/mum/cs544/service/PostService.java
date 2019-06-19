@@ -24,8 +24,8 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public Post get(int userId, int postId) {
-        return postDao.findByUserIdAndId(userId, postId);
+    public Post get(int postId) {
+        return postDao.findById(postId).get();
     }
 
     @Override

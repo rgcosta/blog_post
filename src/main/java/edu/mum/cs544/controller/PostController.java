@@ -3,10 +3,7 @@ package edu.mum.cs544.controller;
 import edu.mum.cs544.model.Post;
 import edu.mum.cs544.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +18,16 @@ public class PostController {
     @GetMapping
     public List<Post> getAll() {
         return postService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public Post get(@PathVariable int id) {
+        return postService.get(id);
+    }
+
+    @DeleteMapping("/{postId}")
+    public void delete(@PathVariable int postId) {
+        postService.delete(postId);
     }
 
     @GetMapping("/search/{title}")
